@@ -1,0 +1,23 @@
+$lg: 1280px;
+$md: 800px;
+$sm: 560px;
+
+$color-primary: #ad0f18;
+$color-secondary: #040304;
+
+$transition: 0.32s ease-out;
+
+$font-body: Gotham,
+sans-serif;
+$font-medium: Gotham-Medium,
+sans-serif;
+$font-black: Gotham-Black,
+sans-serif;
+
+:root {
+  --site-padding: 2rem;
+
+  @media (max-width: $sm) {
+    --site-padding: 1rem;
+  }
+}
