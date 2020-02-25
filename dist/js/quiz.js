@@ -8,6 +8,25 @@ const store = new Vuex.Store({
       wiz: 0,
       hoagie: 0,
     },
+    results: [
+      {
+        title: 'Classic Cheesesteak',
+        description: 'Lorem Ipsum 1',
+      },
+      {
+        title: 'Buffalo Cheesesteak',
+        description: 'Lorem Ipsum 2',
+      },
+      {
+        title: 'Extra Whiz Cheesesteak',
+        description:
+          'Why even try and hold back being yourself? You don’t have to pretend you like cauliflower pizza crust or that skinny margarita tastes the same as a real margarita (it doesn’t). You like your ‘steak smothered in wiz and why not? it’s delicious. YOU DO YOU.',
+      },
+      {
+        title: 'Hoagie',
+        description: 'Lorem Ipsum 3',
+      },
+    ],
     questions: [
       {
         id: 0,
@@ -202,17 +221,6 @@ const store = new Vuex.Store({
 
       // increase this hoagie's total
       context.commit('increment', payload.value);
-
-      // loop through answers
-      // context.state.questions[payload.questionId].answers.forEach(function(
-      //   answer,
-      //   index,
-      // ) {
-      //   // once you find the answer that matches the chosen answer, mark it active
-      //   if (answer.label == payload.label) {
-      //     console.log(answer.active);
-      //   }
-      // });
     },
   },
   mutations: {
@@ -260,7 +268,6 @@ Vue.component('quiz-item-answers-option', {
     optionClicked() {
       if (this.answer.active) {
         // if this answer is already active, make it inactive
-        // store.commit('increment', this.answer.value);
         store.dispatch('deactivateAnswer', {
           label: this.answer.label,
           value: this.answer.value,
@@ -278,7 +285,6 @@ Vue.component('quiz-item-answers-option', {
           value: this.answer.value,
           questionId: this.questionId,
         });
-        // store.commit('decrement', this.answer.value);
       }
     },
   },
@@ -293,6 +299,33 @@ var app = new Vue({
     },
     totals() {
       return this.$store.state.totals;
+    },
+    results() {
+      return this.$store.state.results;
+    },
+    questionsAnswered() {
+      var answered =
+        this.totals.classic +
+        this.totals.buff +
+        this.totals.hoagie +
+        this.totals.wiz;
+
+      return answered == this.questions.length;
+    },
+    findTotal() {
+      var localTotals = this.totals;
+      // convert totals object to array
+      var arr = Object.keys(localTotals).map(function(key) {
+        return localTotals[key];
+      });
+
+      // find the index of the highest total
+      var indexOfMaxValue = arr.reduce(
+        (iMax, x, i, arr) => (x > arr[iMax] ? i : iMax),
+        0,
+      );
+
+      return indexOfMaxValue;
     },
   },
 });

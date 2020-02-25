@@ -39,7 +39,6 @@
     <!-- quiz -->
     <div id="quiz-app">
       <main>
-        {{ totals }}
         <section class="quiz">
           <quiz-item
             v-for="question in questions"
@@ -51,20 +50,16 @@
       </main>
       <!-- end quiz -->
       <!-- result -->
-      <footer>
+      <footer v-if="questionsAnswered">
         <section class="result">
           <h4>- Quiz -<span>What Kind of Cheesesteak are you?</span></h4>
           <!-- result card -->
           <div class="result--card">
             <div class="result--img"></div>
             <div class="result--content">
-              <h3>Extra Whiz Cheesesteak</h3>
+              <h3>{{ results[findTotal].title }}</h3>
               <p>
-                Why even try and hold back being yourself? You don’t have to
-                pretend you like cauliflower pizza crust or that skinny
-                margarita tastes the same as a real margarita (it doesn’t). You
-                like your ‘steak smothered in wiz and why not? it’s delicious.
-                YOU DO YOU.
+                {{ results[findTotal].description }}
               </p>
               <!-- result share -->
               <div class="result--share">
