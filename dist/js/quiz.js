@@ -1,5 +1,4 @@
 // Vuex
-
 const store = new Vuex.Store({
   state: {
     totals: {
@@ -246,7 +245,7 @@ const store = new Vuex.Store({
 Vue.component('quiz-item', {
   props: ['question', 'answers', 'id'],
   template:
-    '<div class="quiz--item"><quiz-item-question :question="question"></quiz-item-question><quiz-item-answers :questionId="id" :answers="answers"></quiz-item-answers></div>',
+    '<div :data-question-id="id" class="quiz--item"><quiz-item-question :question="question"></quiz-item-question><quiz-item-answers :questionId="id"  :answers="answers"></quiz-item-answers></div>',
 });
 
 Vue.component('quiz-item-question', {
@@ -257,7 +256,7 @@ Vue.component('quiz-item-question', {
 Vue.component('quiz-item-answers', {
   props: ['answers', 'questionId'],
   template:
-    '<div class="quiz--options"><quiz-item-answers-option v-for="answer in answers" :answer="answer" :questionId="questionId"></quiz-item-answers-option></div>',
+    '<div class="quiz--options"><quiz-item-answers-option v-for="answer in answers" :answer="answer"  :questionId="questionId"></quiz-item-answers-option></div>',
 });
 
 Vue.component('quiz-item-answers-option', {
@@ -285,6 +284,32 @@ Vue.component('quiz-item-answers-option', {
           value: this.answer.value,
           questionId: this.questionId,
         });
+        // scroll to next question
+
+        // check if there is another question
+        if (
+          document.querySelector(
+            '[data-question-id="' + (this.questionId + 1) + '"]',
+          )
+        ) {
+          scrollTo(
+            document.documentElement,
+            document.querySelector(
+              '[data-question-id="' + (this.questionId + 1) + '"]',
+            ).offsetTop,
+            600,
+          );
+        } else {
+          // else scroll to results
+
+          setTimeout(function() {
+            scrollTo(
+              document.documentElement,
+              document.querySelector('#result').offsetTop,
+              600,
+            );
+          }, 200);
+        }
       }
     },
   },
@@ -361,4 +386,16 @@ function scrollAnchors(e) {
       clearInterval(checkIfDone);
     }
   }, 100);
+}
+
+function scrollTo(element, to, duration) {
+  if (duration <= 0) return;
+  var difference = to - element.scrollTop;
+  var perTick = (difference / duration) * 10;
+
+  setTimeout(function() {
+    element.scrollTop = element.scrollTop + perTick;
+    if (element.scrollTop === to) return;
+    scrollTo(element, to, duration - 10);
+  }, 10);
 }
