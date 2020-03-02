@@ -318,7 +318,7 @@ Vue.component('quiz-item-answers-option', {
             document.querySelector(
               '[data-question-id="' + (this.questionId + 1) + '"]',
             ).offsetTop,
-            600,
+            400,
           );
         } else {
           // else scroll to results
@@ -330,6 +330,17 @@ Vue.component('quiz-item-answers-option', {
               600,
             );
           }, 200);
+
+          // update meta tags
+          document
+            .querySelector('[property="og:title"]')
+            .setAttribute('content', 'Hello!');
+          document
+            .querySelector('[property="og:description"]')
+            .setAttribute('content', 'YO!');
+          document
+            .querySelector('[property="og:image"]')
+            .setAttribute('content', 'image!');
         }
       }
     },
