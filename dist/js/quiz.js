@@ -340,7 +340,10 @@ Vue.component('quiz-item-answers-option', {
             .setAttribute('content', 'YO!');
           document
             .querySelector('[property="og:image"]')
-            .setAttribute('content', 'image!');
+            .setAttribute(
+              'content',
+              'https://awesome-ride-7c81dc.netlify.com/i/cheesesteak.jpg',
+            );
         }
       }
     },
