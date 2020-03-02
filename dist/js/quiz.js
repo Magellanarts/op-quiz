@@ -221,6 +221,9 @@ const store = new Vuex.Store({
       // increase this hoagie's total
       context.commit('increment', payload.value);
     },
+    resetQuiz(context) {
+      context.commit('reset');
+    },
   },
   mutations: {
     increment(state, payload) {
@@ -238,6 +241,20 @@ const store = new Vuex.Store({
       state.questions[payload.questionId].answers.find(
         x => x.label === payload.label,
       ).active = false;
+    },
+    reset(state) {
+      // reset totals
+      state.totals.classic = 0;
+      state.totals.buff = 0;
+      state.totals.wiz = 0;
+      state.totals.hoagie = 0;
+
+      // reset active answers
+      state.questions.forEach(question => {
+        question.answers.forEach(answer => {
+          answer.active = false;
+        });
+      });
     },
   },
 });
@@ -311,6 +328,20 @@ Vue.component('quiz-item-answers-option', {
           }, 200);
         }
       }
+    },
+  },
+});
+
+Vue.component('quiz-reset', {
+  template: '<div class="quiz-reset" @click="reset">Retake Quiz</div>',
+  methods: {
+    reset() {
+      store.dispatch('resetQuiz');
+      scrollTo(
+        document.documentElement,
+        document.querySelector('#beginning').offsetTop,
+        400,
+      );
     },
   },
 });

@@ -64,10 +64,17 @@ p:last-of-type {
   margin-bottom: 0;
 }
 
-a {
+a,
+.quiz-reset {
   text-decoration: none;
   color: #ad0f18;
   font-family: Gotham-Black, sans-serif;
+  border: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  display: inline;
+  cursor: pointer;
 }
 
 .small-font {
