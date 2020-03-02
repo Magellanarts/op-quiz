@@ -55,7 +55,10 @@
           <h4>- Quiz -<span>What Kind of Cheesesteak are you?</span></h4>
           <!-- result card -->
           <div class="result--card">
-            <div class="result--img"></div>
+            <div
+              class="result--img"
+              :style="{ 'background-image' : ' url(i/' + results[findTotal].image + ')'}"
+            ></div>
             <div class="result--content">
               <h3>{{ results[findTotal].title }}</h3>
               <p>

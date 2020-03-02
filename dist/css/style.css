@@ -393,7 +393,7 @@ footer {
 
 .result--img {
   height: 320px;
-  background: #ad0f18 url('../i/cheesesteak.jpg') center center no-repeat;
+  background: #ad0f18 center center no-repeat;
   background-size: cover;
 }
 
