@@ -25,13 +25,6 @@
   </head>
 
   <body>
-    <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=160091497407708&autoLogAppEvents=1"
-    ></script>
     <!-- header -->
     <header>
       <!-- nav -->
@@ -185,5 +178,32 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
     <script src="js/vuex.js"></script>
     <script src="js/quiz.js"></script>
+
+    <div id="fb-root"></div>
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+      FB.init({
+        appId: 203851320851864,
+        status: true,
+        xfbml: true,
+        version: 'v2.9',
+      });
+      FB.AppEvents.logPageView();
+    </script>
+    <script>
+      FB.ui(
+        {
+          method: 'share_open_graph',
+          action_type: 'og.likes',
+          action_properties: JSON.stringify({
+            object: 'https://developers.facebook.com/docs/javascript/examples',
+          }),
+        },
+        function(response) {
+          // Debug response (optional)
+          console.log(response);
+        },
+      );
+    </script>
   </body>
 </html>
