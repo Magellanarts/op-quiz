@@ -81,24 +81,29 @@
                 {{ results[findTotal].description }}
               </p>
               <!-- result share -->
+              <script>
+                document
+                  .querySelector('.fb-share-button')
+                  .addEventListener('click', function() {
+                    FB.ui(
+                      {
+                        method: 'share_open_graph',
+                        action_type: 'og.likes',
+                        action_properties: JSON.stringify({
+                          object: 'https://awesome-ride-7c81dc.netlify.com/',
+                        }),
+                      },
+                      function(response) {
+                        // Debug response (optional)
+                        console.log(response);
+                      },
+                    );
+                  });
+              </script>
               <div class="result--share">
                 <ul class="result--share-btns">
                   <li>
-                    <div
-                      class="fb-share-button"
-                      data-href="https://awesome-ride-7c81dc.netlify.com/?fbrefresh=refresh"
-                      data-layout="box_count"
-                      data-size="small"
-                    >
-                      <a
-                        target="_blank"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://awesome-ride-7c81dc.netlify.com/&fbrefresh=refresh"
-                        class="fb-xfbml-parse-ignore"
-                        >Share</a
-                      >
-                    </div>
                     <button
-                      data-href="https://awesome-ride-7c81dc.netlify.com/?fbrefresh=CAN_BE_ANYTHING"
                       class="fb-share-button facebook-btn"
                       data-layout="button_count"
                     >
@@ -189,21 +194,6 @@
         version: 'v2.9',
       });
       FB.AppEvents.logPageView();
-    </script>
-    <script>
-      FB.ui(
-        {
-          method: 'share_open_graph',
-          action_type: 'og.likes',
-          action_properties: JSON.stringify({
-            object: 'https://awesome-ride-7c81dc.netlify.com/',
-          }),
-        },
-        function(response) {
-          // Debug response (optional)
-          console.log(response);
-        },
-      );
     </script>
   </body>
 </html>
