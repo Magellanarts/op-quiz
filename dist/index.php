@@ -8,31 +8,33 @@
   <link rel="stylesheet" href="css/style.css" />
   <title>What Kind of Cheesesteak Are You?!</title>
 
-  <meta property="og:url" content="https://awesome-ride-7c81dc.netlify.com/" />
-  <meta property="og:type" content="article" />
   <meta property="og:title" content="What kind of Cheesesteak are you?!" />
 
-  <?php if($_QUERY['result'] === 'whiz'): ?>
+  <?php if($_GET['result'] === 'whiz'): ?>
+  <meta property="og:url" content="http://magellanarts.com/bl/?result=whiz" />
   <meta property="og:description" content="I got Extra Whiz Cheesesteak" />
-  <meta property="og:image" content="https://awesome-ride-7c81dc.netlify.com/i/social-image_whiz.jpg" />
+  <meta property="og:image" content="http://magellanarts.com/bl/i/social-image_whiz.jpg" />
 
-  <?php elseif($_QUERY['result'] === 'classic'): ?>
+  <?php elseif($_GET['result'] === 'classic'): ?>
+  <meta property="og:url" content="http://magellanarts.com/bl/?result=classic" />
   <meta property="og:description" content="I got Classic Cheesesteak" />
-  <meta property="og:image" content="https://awesome-ride-7c81dc.netlify.com/i/social-image_classic.jpg" />
+  <meta property="og:image" content="http://magellanarts.com/bl/i/social-image_classic.jpg" />
 
-  <?php elseif($_QUERY['result'] === 'buffalo'): ?>
+  <?php elseif($_GET['result'] === 'buffalo'): ?>
+  <meta property="og:url" content="http://magellanarts.com/bl/?result=buffalo" />
   <meta property="og:description" content="I got Buffalo Cheesesteak" />
-  <meta property="og:image" content="https://awesome-ride-7c81dc.netlify.com/i/social-image_buffalo.jpg" />
+  <meta property="og:image" content="http://magellanarts.com/bl/i/social-image_buffalo.jpg" />
 
-  <?php elseif($_QUERY['result'] === 'hoagie'): ?>
+  <?php elseif($_GET['result'] === 'hoagie'): ?>
+  <meta property="og:url" content="http://magellanarts.com/bl/?result=hoagie" />
   <meta property="og:description" content="I got Hoagie Cheesesteak" />
-  <meta property="og:image" content="https://awesome-ride-7c81dc.netlify.com/i/social-image_hoagie.jpg" />
+  <meta property="og:image" content="http://magellanarts.com/bl/i/social-image_hoagie.jpg" />
 
   <?php else: ?>
-
+  <meta property="og:url" content="http://magellanarts.com/bl/" />
   <meta property="og:description"
     content="Do you match up with a classic cheesesteak or something more adventurous? Take a minute and discover your Cheesesteak Profile." />
-  <meta property="og:image" content="https://awesome-ride-7c81dc.netlify.com/i/social-image_quiz.jpg" />
+  <meta property="og:image" content="http://magellanarts.com/bl/i/social-image_quiz.jpg" />
   <?php endif; ?>
 
 
@@ -77,7 +79,7 @@
           <div class="result--img js-result-image" :data-image="results[findTotal].image"
             :style="{ 'background-image' : ' url(i/' + results[findTotal].image + ')'}"></div>
           <div class="result--content">
-            <h3 class="js-result-title" :data-result-slug="{{ results[findTotal].title }}">
+            <h3 class="js-result-title" :data-result-slug="results[findTotal].slug">
               {{ results[findTotal].title }}</h3>
             <p>
               {{ results[findTotal].description }}
@@ -149,21 +151,24 @@
   document
     .querySelector('.fb-share-button')
     .addEventListener('click', function() {
+      console.log('http://magellanarts.com/bl/?result=' + document.querySelector(
+        '.js-result-title').getAttribute('data-result-slug'))
       FB.ui({
-          method: 'share',
-          action_type: 'og.likes',
-          action_properties: JSON.stringify({
-            object: 'https://awesome-ride-7c81dc.netlify.com?result=' + document.querySelecor(
-              '.js-result-title').getAttribute('data-result-slug'),
-          }),
-        },
-        function(response) {
-          // Debug response (optional)
-          console.log(response);
-        },
-      );
+        display: 'popup',
+        appId: 203851320851864,
+        method: 'share_open_graph',
+        action_type: 'og.likes',
+        action_properties: JSON.stringify({
+          object: 'http://magellanarts.com/bl/?result=' + document.querySelector(
+            '.js-result-title').getAttribute('data-result-slug')
+
+        })
+      })
+
     });
   </script>
 </body>
+
+
 
 </html>
