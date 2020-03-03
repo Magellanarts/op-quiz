@@ -66,7 +66,7 @@
       </main>
       <!-- end quiz -->
       <!-- result -->
-      <footer v-if="questionsAnswered">
+      <footer v-show="questionsAnswered">
         <section class="result" id="result">
           <h4>- Quiz -<span>What Kind of Cheesesteak are you?</span></h4>
           <!-- result card -->
@@ -81,32 +81,11 @@
                 {{ results[findTotal].description }}
               </p>
               <!-- result share -->
-              <script>
-                document
-                  .querySelector('.fb-share-button')
-                  .addEventListener('click', function() {
-                    FB.ui(
-                      {
-                        method: 'share_open_graph',
-                        action_type: 'og.likes',
-                        action_properties: JSON.stringify({
-                          object: 'https://awesome-ride-7c81dc.netlify.com/',
-                        }),
-                      },
-                      function(response) {
-                        // Debug response (optional)
-                        console.log(response);
-                      },
-                    );
-                  });
-              </script>
+
               <div class="result--share">
                 <ul class="result--share-btns">
                   <li>
-                    <button
-                      class="fb-share-button facebook-btn"
-                      data-layout="button_count"
-                    >
+                    <button class="fb-share-button facebook-btn">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -194,6 +173,25 @@
         version: 'v2.9',
       });
       FB.AppEvents.logPageView();
+    </script>
+    <script>
+      document
+        .querySelector('.fb-share-button')
+        .addEventListener('click', function() {
+          FB.ui(
+            {
+              method: 'share_open_graph',
+              action_type: 'og.likes',
+              action_properties: JSON.stringify({
+                object: 'https://awesome-ride-7c81dc.netlify.com/',
+              }),
+            },
+            function(response) {
+              // Debug response (optional)
+              console.log(response);
+            },
+          );
+        });
     </script>
   </body>
 </html>
