@@ -181,16 +181,16 @@
         .addEventListener('click', function() {
           FB.ui(
             {
-              method: 'share_open_graph',
-              action_type: 'og.shares',
+              method: 'share',
+              action_type: 'og.likes',
               action_properties: JSON.stringify({
                 object: {
                   'og:url': 'https://awesome-ride-7c81dc.netlify.com',
                   'og:title': 'What kind of Cheesesteak are you?!',
                   'og:description':
                     'I got ' + document.querySelector('.js-result-title'),
-                  'og:og:image:width': '2560',
-                  'og:image:height': '960',
+                  'og:og:image:width': '1200',
+                  'og:image:height': '630',
                   'og:image':
                     'https://awesome-ride-7c81dc.netlify.com/i/' +
                     document.querySelector('.js-result-image'),

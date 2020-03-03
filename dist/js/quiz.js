@@ -12,22 +12,26 @@ const store = new Vuex.Store({
         title: 'Classic Cheesesteak',
         description: 'Lorem Ipsum 1',
         image: 'social-image_classic.jpg',
+        slug: 'classic',
       },
       {
         title: 'Buffalo Cheesesteak',
         description: 'Lorem Ipsum 2',
         image: 'social-image_buffalo.jpg',
+        slug: 'buffalo',
       },
       {
         title: 'Extra Whiz Cheesesteak',
         description:
           'Why even try and hold back being yourself? You don’t have to pretend you like cauliflower pizza crust or that skinny margarita tastes the same as a real margarita (it doesn’t). You like your ‘steak smothered in wiz and why not? it’s delicious. YOU DO YOU.',
         image: 'social-image_whiz.jpg',
+        slug: 'whiz',
       },
       {
         title: 'Hoagie',
         description: 'Lorem Ipsum 3',
         image: 'social-image_hoagie.jpg',
+        slug: 'hoagie',
       },
     ],
     questions: [
